@@ -16,7 +16,7 @@ const separate = (arr) => {
   let arrGanjil = [];
 
   for (let i = 0; i < arr.length; i++) {
-    if (i % 2 === 1) {
+    if (i % 2 === 0) {
       arrGenap.push(arr[i]);
     } else {
       arrGanjil.push(arr[i]);
