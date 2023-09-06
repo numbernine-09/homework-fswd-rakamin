@@ -1,3 +1,4 @@
+// fungsi untuk membuat nilai random 1-50 dengan 100 elemen array
 const randomNilai = () => {
   let arrNilaiRandom = [];
 
@@ -9,6 +10,7 @@ const randomNilai = () => {
   return arrNilaiRandom;
 };
 
+// fungsi untuk memisahkan array elemen genap dan ganjil
 const separate = (arr) => {
   let arrGenap = [];
   let arrGanjil = [];
@@ -24,6 +26,7 @@ const separate = (arr) => {
   return [arrGenap, arrGanjil];
 };
 
+// fungsi untuk mencari nilai elemen terkecil
 const findMin = (arr) => {
   let min = arr[0];
 
@@ -36,6 +39,7 @@ const findMin = (arr) => {
   return min;
 };
 
+// fungsi untuk mencari nilai elemen terbesar
 const findMax = (arr) => {
   let max = arr[0];
 
@@ -48,6 +52,7 @@ const findMax = (arr) => {
   return max;
 };
 
+// fungsi untuk mencari nilai total elemen
 const findTotal = (arr) => {
   let total = 0;
 
@@ -58,6 +63,7 @@ const findTotal = (arr) => {
   return total;
 };
 
+// fungsi untuk mencari nilai rata-rata elemen
 const findAverage = (arr) => {
   if (arr.length === 0) {
     return 0;
@@ -68,7 +74,16 @@ const findAverage = (arr) => {
   return Math.floor(total / arr.length);
 };
 
-const compare = (arrGenap, arrGanjil, arr) => {
+// fungsi untuk membadingkan nilai pada array genap dan ganjil
+const compare = (genap, ganjil) =>
+  genap > ganjil
+    ? "Lebih besar di Array Genap"
+    : genap < ganjil
+    ? "Lebih besar di Array ganjil"
+    : "Kedua Array memiliki nilai sama";
+
+// fungsi utama untuk menampilkan sebuah hasil
+const main = (arrGenap, arrGanjil, arr) => {
   const minGenap = findMin(arrGenap);
   const maxGenap = findMax(arrGenap);
   const minGanjil = findMin(arrGanjil);
@@ -105,42 +120,17 @@ const compare = (arrGenap, arrGanjil, arr) => {
   );
 
   console.log("Perbandingan nilai antara Array Genap dan Ganjil:\n");
-  console.log(
-    "nilai min:",
-    minGenap > minGanjil
-      ? "Lebih besar di Array Genap"
-      : minGenap < minGanjil
-      ? "Lebih besar di Array Ganjil"
-      : "Kedua Array memiliki nilai sama"
-  );
-  console.log(
-    "nilai max:",
-    maxGenap > maxGanjil
-      ? "Lebih besar di Array Genap"
-      : maxGenap < maxGanjil
-      ? " Lebih besar di Array Ganjil"
-      : "Kedua Array memiliki nilai sama"
-  );
-  console.log(
-    "nilai total:",
-    totalGenap > totalGanjil
-      ? "Lebih besar di Array Genap"
-      : totalGenap < totalGanjil
-      ? "Lebih besar di Array Ganjil"
-      : "Kedua Array memiliki nilai sama"
-  );
-  console.log(
-    "nilai rata-rata:",
-    averageGenap > averageGanjil
-      ? "Lebih besar di Array Genap"
-      : averageGenap < averageGanjil
-      ? "Lebih besar di Array Ganjil"
-      : "Kedua Array memiliki nilai sama"
-  );
+  console.log("nilai min:", compare(minGenap, minGanjil));
+  console.log("nilai max:", compare(maxGenap, maxGanjil));
+  console.log("nilai total:", compare(totalGenap, totalGanjil));
+  console.log("nilai rata-rata:", compare(averageGenap, averageGanjil));
 };
 
+// melakukan pemanggilan pada fungsi dan memasukkan array pada variabel nilai
 const nilai = randomNilai();
 
+// melakukan destructuring  untuk mengambil nilai array genap dan ganjil
 const [arrGenap, arrGanjil] = separate(nilai);
 
-compare(arrGenap, arrGanjil, nilai);
+// memasukan nilai array genap, ganjil, dan array nilai random
+main(arrGenap, arrGanjil, nilai);
