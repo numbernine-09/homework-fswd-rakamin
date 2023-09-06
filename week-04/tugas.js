@@ -65,10 +65,6 @@ const findTotal = (arr) => {
 
 // fungsi untuk mencari nilai rata-rata elemen
 const findAverage = (arr) => {
-  if (arr.length === 0) {
-    return 0;
-  }
-
   let total = findTotal(arr);
 
   return Math.floor(total / arr.length);
