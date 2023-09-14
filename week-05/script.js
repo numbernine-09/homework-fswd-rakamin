@@ -109,10 +109,12 @@ class DataHandler {
     this.tbody.addEventListener("click", (e) => this.onDeleteData(e));
   }
 
+  // method untuk membuat efek loading
   loader(value) {
     this.loadingElement.style.display = value;
   }
 
+  // method menampilkan alert success
   showCustomAlert(message) {
     const customAlert = document.getElementById("custom-alert");
     customAlert.textContent = message;
@@ -122,6 +124,7 @@ class DataHandler {
     }, 1500);
   }
 
+  // method menghapus semua data
   onDeleteAllData() {
     if (confirm("Apakah Anda yakin ingin menghapus semua data?")) {
       this.saveData = [];
@@ -131,9 +134,10 @@ class DataHandler {
     }
   }
 
+  // method menghapus data tunggal
   onDeleteData(e) {
     if (e.target.classList.contains("btn-delete")) {
-      alert("Data berhasil");
+      confirm("apakah Anda yakin ingin menghapus data ini?");
       const index = e.target.getAttribute("data-index");
       this.saveData.splice(index, 1);
       localStorage.setItem("saveData", JSON.stringify(this.saveData));
@@ -141,12 +145,14 @@ class DataHandler {
     }
   }
 
+  // method untuk reset form
   resetForm() {
     this.inputName.value = "";
     this.inputMoney.value = "";
     this.inputAge.value = "";
   }
 
+  // method untuk menangani penyimpanan data asynchronously
   async onSubmit(e) {
     e.preventDefault();
     if (this.validateForm()) {
@@ -171,6 +177,7 @@ class DataHandler {
     }
   }
 
+  // method penyimpanan data asynchronously
   async saveDataAsync(data) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -181,6 +188,7 @@ class DataHandler {
     });
   }
 
+  // method untuk render data pada tabel
   renderData() {
     this.tbody.innerHTML = "";
     let number = 1;
@@ -205,6 +213,7 @@ class DataHandler {
     });
   }
 
+  // method untuk menghitung rata umur
   calculateAverageAge() {
     const totalAge = this.saveData.reduce((acc, data) => acc + data.umur, 0);
     const averageAge = totalAge / this.saveData.length;
@@ -214,6 +223,7 @@ class DataHandler {
     }
   }
 
+  // method untuk menghitung rata uang saku
   calculateAverageAllowance() {
     const totalAllowance = this.saveData.reduce(
       (acc, data) => acc + data.uang,
@@ -226,6 +236,7 @@ class DataHandler {
     }
   }
 
+  // method untuk menjanlankan seluruh method validasi pada tiap objek
   validateForm() {
     for (const validator of this.validators) {
       validator.validate();
@@ -236,6 +247,7 @@ class DataHandler {
     );
   }
 
+  // method untuk memanggil render data dan kalkulasi rata rata
   init() {
     this.renderData();
     this.calculateAverageAge();
@@ -243,5 +255,6 @@ class DataHandler {
   }
 }
 
+// pembuatan objek dan pemanggilan methodnya
 const dataHandler = new DataHandler();
 dataHandler.init();
