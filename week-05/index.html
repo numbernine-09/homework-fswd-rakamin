@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cmyk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- link cdn tailwind + daisyUI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- notifikasi pesan  -->
+    <span
+      class="hidden absolute md:inset-y-2/4 md:inset-x-2/4 inset-x-1/2 inset-y-60 loading loading-spinner loading-lg"
+      id="loading"
+    ></span>
+    <div class="flex justify-center">
+      <div
+        class="hidden alert absolute top-2 z-50 md:w-8/12 w-full alert-success transition-opacity duration-300 ease-in-out"
+        id="alert"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="stroke-current shrink-0 h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span id="custom-alert"></span>
+      </div>
+      <div
+        class="hidden alert absolute top-2 z-50 md:w-8/12 w-full alert-error transition-opacity duration-300 ease-in-out"
+        id="alert-wrap"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="stroke-current shrink-0 h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span>Error! <span id="error-message"></span></span>
+      </div>
+    </div>
+    <div class="flex justify-center items-center mt-2">
+      <div class="bg-blue-800 md:w-10/12 w-11/12 p-5 rounded-md">
+        <h1 class="text-center font-semibold text-xl text-zinc-100 mb-4">
+          FORM PENDAFTARAN DAN LIST DAFTAR PESERTA
+        </h1>
+        <!-- tab page -->
+        <div class="tabs tabs-boxed w-fit mx-auto font-medium">
+          <a class="tab" onclick="handleTabs(event,'tab1')">Registrasi</a>
+          <a class="tab" onclick="handleTabs(event, 'tab2')">List</a>
+        </div>
+        <!-- content tab page 1 -->
+        <div
+          class="tabcontent md:w-8/12 w-full bg-gray-100 mx-auto mt-2 p-3 rounded-md"
+          id="tab1"
+        >
+          <h1 class="text-center font-medium">Form Registrasi Peserta</h1>
+          <form action="" id="form1">
+            <label class="label" for="nama">
+              <span class="label-text">Nama Peserta</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Masukkan Nama anda"
+              class="input input-sm input-bordered input-primary w-full max-w-full"
+              id="nama"
+            />
+            <label class="label" for="umur">
+              <span class="label-text">Umur Peserta</span>
+            </label>
+            <input
+              type="number"
+              placeholder="Masukkan Umur anda"
+              class="input input-sm input-bordered input-primary w-full max-w-full"
+              id="umur"
+            />
+            <label class="label" for="uang">
+              <span class="label-text">Uang Saku</span>
+            </label>
+            <input
+              type="number"
+              placeholder="ex: 100000"
+              class="input input-sm input-bordered input-primary w-full max-w-full"
+              id="uang"
+            />
+            <input
+              type="submit"
+              class="btn btn-sm w-full btn-active bg-blue-500 mt-4 text-white hover:bg-blue-700"
+            />
+          </form>
+        </div>
+        <!-- content tab page 2 -->
+        <div
+          class="tabcontent md:w-10/12 w-full bg-gray-100 mx-auto mt-2 p-4 rounded-md flex justify-center items-center non-active flex-col"
+          id="tab2"
+        >
+          <h1 class="w-fit pl-1 mb-2 font-medium border-l-4 border-indigo-500">
+            List Daftar Peserta
+          </h1>
+          <div class="overflow-x-auto">
+            <table class="table">
+              <!-- head -->
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Umur</th>
+                  <th>Uang Saku</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="body"></tbody>
+            </table>
+          </div>
+          <div class="bg-cyan-400 rounded-md btn-active">
+            <h1 class="mt-5 text-zinc-900 p-2">
+              Rata rata pendaftar memiliki uang sangu sebesar
+              <span id="rata-uang" class="text-red-800 font-bold"
+                >tidak ada!</span
+              >
+              dengan rata rata umur
+              <span id="rata-umur" class="text-red-800 font-bold"
+                >tidak ada!</span
+              >
+            </h1>
+          </div>
+          <div class="flex justify-end">
+            <button
+              class="btn btn-active btn-sm btn-accent mt-4"
+              id="hapus-semua-data"
+            >
+              clear All
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- script OOP -->
+    <script src="script.js"></script>
+    <script>
+      const tabcontent = document.querySelectorAll(".tabcontent");
+      const tablinks = document.querySelectorAll(".tab");
+      tabcontent[1].style.display = "none";
+      tablinks[0].classList.add("tab-active");
+
+      function handleTabs(event, idtab) {
+        for (let i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+
+        for (let i = 0; i < tablinks.length; i++) {
+          tablinks[i].classList.remove("tab-active");
+        }
+
+        document.getElementById(idtab).style.display = "block";
+        event.currentTarget.classList.add("tab-active");
+        localStorage.setItem("activeTab", idtab);
+      }
+
+      window.addEventListener("load", () => {
+        const activeTabId = localStorage.getItem("activeTab");
+        if (activeTabId) {
+          const activeTab = document.getElementById(activeTabId);
+          if (activeTab) {
+            for (let i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+            }
+
+            activeTab.style.display = "block";
+
+            for (let i = 0; i < tablinks.length; i++) {
+              tablinks[i].classList.remove("tab-active");
+            }
+
+            activeTab.classList.add("tab-active");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
