@@ -20,7 +20,7 @@
     ></span>
     <div class="flex justify-center">
       <div
-        class="hidden alert absolute top-2 z-50 md:w-8/12 w-full alert-success transition-opacity duration-300 ease-in-out"
+        class="hidden alert absolute top-3 z-50 md:w-8/12 w-full alert-success transition-opacity duration-300 ease-in-out"
         id="alert"
       >
         <svg
@@ -36,10 +36,10 @@
             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span id="custom-alert"></span>
+        <span id="custom-alert" class="text-xl"></span>
       </div>
       <div
-        class="hidden alert absolute top-2 z-50 md:w-8/12 w-full alert-error transition-opacity duration-300 ease-in-out"
+        class="hidden alert absolute top-3 z-50 md:w-8/12 w-full alert-error transition-opacity duration-300 ease-in-out"
         id="alert-wrap"
       >
         <svg
@@ -55,56 +55,64 @@
             d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span>Error! <span id="error-message"></span></span>
+        <span class="text-xl">Error! <span id="error-message"></span></span>
       </div>
     </div>
     <div class="flex justify-center items-center mt-2">
-      <div class="bg-blue-800 md:w-10/12 w-11/12 p-5 rounded-md">
-        <h1 class="text-center font-semibold text-xl text-zinc-100 mb-4">
+      <div class="bg-blue-800 md:w-10/12 w-11/12 p-5 rounded-md min-h-auto">
+        <h1 class="text-center font-semibold text-3xl text-zinc-100 mb-4">
           FORM PENDAFTARAN DAN LIST DAFTAR PESERTA
         </h1>
         <!-- tab page -->
-        <div class="tabs tabs-boxed w-fit mx-auto font-medium">
-          <a class="tab" onclick="handleTabs(event,'tab1')">Registrasi</a>
-          <a class="tab" onclick="handleTabs(event, 'tab2')">List</a>
+        <div class="tabs tabs-boxed w-fit mx-auto font-medium mb-3 p-1">
+          <div class="flex justify-center items-center">
+            <a class="tab tab-lg text-xl" onclick="handleTabs(event,'tab1')"
+              >Registrasi</a
+            >
+            <a class="tab tab-lg text-xl" onclick="handleTabs(event, 'tab2')"
+              >List</a
+            >
+          </div>
         </div>
         <!-- content tab page 1 -->
         <div
-          class="tabcontent md:w-8/12 w-full bg-gray-100 mx-auto mt-2 p-3 rounded-md"
+          class="tabcontent md:w-6/12 w-full bg-gray-100 mx-auto mt-2 p-6 rounded-md"
           id="tab1"
         >
-          <h1 class="text-center font-medium">Form Registrasi Peserta</h1>
+          <h1 class="text-center text-2xl font-medium">
+            Form Registrasi Peserta
+          </h1>
           <form action="" id="form1">
             <label class="label" for="nama">
-              <span class="label-text">Nama Peserta</span>
+              <span class="label-text text-lg">Nama Peserta</span>
             </label>
             <input
               type="text"
               placeholder="Masukkan Nama anda"
-              class="input input-sm input-bordered input-primary w-full max-w-full"
+              class="input input-md input-bordered input-primary w-full max-w-full"
               id="nama"
             />
             <label class="label" for="umur">
-              <span class="label-text">Umur Peserta</span>
+              <span class="label-text text-lg">Umur Peserta</span>
             </label>
             <input
               type="number"
               placeholder="Masukkan Umur anda"
-              class="input input-sm input-bordered input-primary w-full max-w-full"
+              class="input input-md input-bordered input-primary w-full max-w-full"
               id="umur"
             />
             <label class="label" for="uang">
-              <span class="label-text">Uang Saku</span>
+              <span class="label-text text-lg">Uang Saku</span>
             </label>
             <input
               type="number"
               placeholder="ex: 100000"
-              class="input input-sm input-bordered input-primary w-full max-w-full"
+              class="input input-md input-bordered input-primary w-full max-w-full"
               id="uang"
             />
             <input
               type="submit"
-              class="btn btn-sm w-full btn-active bg-blue-500 mt-4 text-white hover:bg-blue-700"
+              class="btn btn-md w-full btn-active bg-blue-500 mt-4 text-white hover:bg-blue-700"
             />
           </form>
         </div>
@@ -113,14 +121,16 @@
           class="tabcontent md:w-10/12 w-full bg-gray-100 mx-auto mt-2 p-4 rounded-md flex justify-center items-center non-active flex-col"
           id="tab2"
         >
-          <h1 class="w-fit pl-1 mb-2 font-medium border-l-4 border-indigo-500">
+          <h1
+            class="w-fit pl-1 mb-2 font-medium border-l-4 border-indigo-500 text-xl"
+          >
             List Daftar Peserta
           </h1>
           <div class="overflow-x-auto">
             <table class="table">
               <!-- head -->
               <thead>
-                <tr>
+                <tr class="text-xl">
                   <th>No</th>
                   <th>Nama</th>
                   <th>Umur</th>
@@ -128,17 +138,17 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody id="body"></tbody>
+              <tbody id="body" class="text-xl"></tbody>
             </table>
           </div>
           <div class="bg-cyan-400 rounded-md btn-active">
-            <h1 class="mt-5 text-zinc-900 p-2">
+            <h1 class="mt-5 text-zinc-900 text-xl p-5">
               Rata rata pendaftar memiliki uang sangu sebesar
-              <span id="rata-uang" class="text-red-800 font-bold"
+              <span id="rata-uang" class="text-red-800 text-xl font-bold"
                 >tidak ada!</span
               >
               dengan rata rata umur
-              <span id="rata-umur" class="text-red-800 font-bold"
+              <span id="rata-umur" class="text-red-800 text-xl font-bold"
                 >tidak ada!</span
               >
             </h1>
@@ -161,7 +171,6 @@
       const tabcontent = document.querySelectorAll(".tabcontent");
       const tablinks = document.querySelectorAll(".tab");
       tabcontent[1].style.display = "none";
-      tablinks[0].classList.add("tab-active");
 
       function handleTabs(event, idtab) {
         for (let i = 0; i < tabcontent.length; i++) {
