@@ -239,7 +239,13 @@ class DataHandler {
   // method untuk menjanlankan seluruh method validasi pada tiap objek
   validateForm() {
     for (const validator of this.validators) {
-      validator.validate();
+      if (
+        this.inputAge.value &&
+        this.inputName.value &&
+        this.inputMoney.value !== ""
+      ) {
+        validator.validate();
+      }
     }
 
     return this.validators.every(
