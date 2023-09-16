@@ -174,6 +174,8 @@ class DataHandler {
         console.error("Simpan data error:", error);
         this.showCustomAlert("Gagal menambahkan data.");
       }
+    } else {
+      alert("anda belum memasukkan inputan apapun!");
     }
   }
 
