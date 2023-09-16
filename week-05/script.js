@@ -175,7 +175,9 @@ class DataHandler {
         this.showCustomAlert("Gagal menambahkan data.");
       }
     } else {
-      alert("anda belum memasukkan inputan apapun!");
+      alert(
+        "anda belum memasukkan inputan apapun atau inputan belum terisi semua"
+      );
     }
   }
 
